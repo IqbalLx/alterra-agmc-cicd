@@ -2,7 +2,7 @@ FROM golang:1.18-alpine3.16 AS build
 
 WORKDIR /app
 
-COPY ./go.* .
+COPY ./go.* ./
 RUN go mod download
 
 COPY . .
@@ -15,6 +15,6 @@ RUN apk add -U --no-cache ca-certificates && update-ca-certificates
 RUN apk add --update bash
 
 WORKDIR /app
-COPY --from=build /app/alterra-agmc .
+COPY --from=build /app/alterra-agmc ./
 
 CMD [ "./alterra-agmc"]
